@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Movie from './Movie';
-
+import "./App.css";
 
 //기억해라 react는 너의 class component의 render method를 자동으로 실행한다는 것을.
 
@@ -30,20 +30,28 @@ class App extends React.Component{
   render(){
     const { isLoading, movies } = this.state;
     return( 
-      <div>
-        {isLoading ? "Loading..." : movies.map(movie=>( 
-            <Movie 
-              key={movie.id}
-              id={movie.id} 
-              year={movie.year} 
-              title={movie.title} 
-              summary={movie.summary} 
-              poster={movie.medium_cover_image} 
-            />)
-          )
-        }
-      </div>
-      // <div>SIBAL</div>
+      <section className="container">
+        {isLoading ? ( 
+          <div className="loader">
+            <span className="loader__text">Loading...</span>
+          </div> 
+          ) : (
+            <div className="movies">
+              {movies.map(movie=>( 
+              <Movie 
+                key={movie.id}
+                id={movie.id} 
+                year={movie.year} 
+                title={movie.title} 
+                summary={movie.summary} 
+                poster={movie.medium_cover_image} 
+                genres={movie.genres}
+              />
+            ))}
+            </div>
+          )}
+      </section >
+      // <section >SIBAL</section >
     )
   }
 }
